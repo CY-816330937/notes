@@ -13,6 +13,8 @@ const weSlug =
 const fuOriginal = 'function Fu(u){let e=_t(ft(u,"index"),!0);return e.length===0?"/":e}'
 const fuDecoded =
   'function Fu(u){try{u=decodeURIComponent(u)}catch(e){}let e=_t(ft(u,"index"),!0);return e.length===0?"/":e}'
+const labelHidden = "lu.alpha=0,lu.scale.set(1/qu)"
+const labelVisible = "lu.alpha=1,lu.scale.set(1/qu)"
 
 function patchSource(src) {
   let next = src
@@ -23,6 +25,7 @@ function patchSource(src) {
   if (!next.includes(fuDecoded) && next.includes(fuOriginal)) {
     next = next.replaceAll(fuOriginal, fuDecoded)
   }
+  if (next.includes(labelHidden)) next = next.replaceAll(labelHidden, labelVisible)
   return next
 }
 
@@ -63,7 +66,7 @@ for (const file of files) {
 
 if (changed === 0) {
   const sample = fs.readFileSync(files[0], "utf8")
-  if (sample.includes(weSlug) || sample.includes("decodeURIComponent(u)")) {
+  if (sample.includes(weSlug) || sample.includes("decodeURIComponent(u)") || sample.includes(labelVisible)) {
     console.log("graph pathname decode patch already applied")
   } else {
     console.warn("graph pathname helper not found; plugin may have changed")
