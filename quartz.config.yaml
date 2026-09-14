@@ -12,6 +12,7 @@ configuration:
   ignorePatterns:
     - private
     - templates
+    - inbox
     - .obsidian
     - .git
     - .trash
