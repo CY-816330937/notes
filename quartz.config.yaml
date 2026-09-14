@@ -169,6 +169,32 @@ plugins:
       priority: 50
   - source: "@quartz-community/graph"
     enabled: true
+    options:
+      localGraph:
+        drag: true
+        zoom: true
+        depth: 1
+        scale: 1.2
+        fontSize: 0.75
+        opacityScale: 5
+        linkDistance: 80
+        repelForce: 0.8
+        centerForce: 0.3
+        showTags: true
+        focusOnHover: true
+      globalGraph:
+        drag: true
+        zoom: true
+        depth: -1
+        scale: 1.1
+        fontSize: 0.7
+        opacityScale: 5
+        linkDistance: 90
+        repelForce: 0.6
+        centerForce: 0.2
+        showTags: true
+        focusOnHover: true
+        enableRadial: true
     layout:
       position: right
       priority: 10
