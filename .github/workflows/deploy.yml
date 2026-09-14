@@ -42,6 +42,8 @@ jobs:
         run: npm ci
       - name: Install Quartz plugins
         run: npx quartz plugin install
+      - name: Patch graph for Unicode paths
+        run: node ./scripts/patch-graph.mjs
       - name: Build Quartz
         run: npx quartz build
       - name: Upload artifact
