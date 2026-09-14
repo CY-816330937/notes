@@ -37,6 +37,9 @@ Get-ChildItem -LiteralPath "content" -Directory -Recurse -Force | ForEach-Object
 }
 
 Invoke-SafeGit add -A -- content publish.ps1 quartz.config.yaml .gitignore
+if (Test-Path -LiteralPath "content\.gitignore") {
+  Invoke-SafeGit add -f -- content/.gitignore
+}
 Invoke-SafeGit rm -r --cached --ignore-unmatch -- content/private content/templates content/inbox | Out-Null
 
 $status = & $gitExe -c safe.directory=E:/quartz status --short -- content publish.ps1 quartz.config.yaml .gitignore | Out-String
